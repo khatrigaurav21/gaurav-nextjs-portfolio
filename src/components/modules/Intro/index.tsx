@@ -1,36 +1,51 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import Header from 'components/ui/theme/Header';
+'use client';
 
-const Intro = () => (
-  <div className="bg-[url('/assets/illustrations/overlay.svg')] bg-contain bg-right-top bg-no-repeat pb-16">
-    <Header />
-    <div className="container py-16 flex items-center flex-col md:flex-row justify-between">
-      <div className="flex-1 w-full md:w-1/2 mb-8 md:mb-0">
-        <h1 className="mb-8 text-3xl md:text-5xl font-bold text-brand-primary dark:text-white typography">
-          Welcome{' '}
-          <span role="img" aria-label="Waving hand">
-            👋
-          </span>
-        </h1>
-        <h2 className="mb-[2.5rem] text-2xl md:text-4xl text-brand-secondary dark:text-slate-200 typography">
-          I’m John Doe and I’m a software engineer!
-        </h2>
-        <Link href="#contact" className="button button-primary">
-          Hire me
-        </Link>
-      </div>
-      <div className="flex-1 w-full md:w-1/2">
-        <Image
-          src="/assets/illustrations/dev.svg"
-          alt="I’m John and I’m a JAMStack engineer!"
-          width={463}
-          height={273}
-          priority
-        />
-      </div>
-    </div>
-  </div>
-);
+import { motion } from 'framer-motion';
+
+const Intro = () => {
+	return (
+		<section className="bg-red-500 py-10 text-white">
+			<div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+				<motion.h1
+					className="text-4xl sm:text-5xl font-bold mb-6 flex items-center gap-2"
+					initial={{ opacity: 0, y: 40 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6 }}
+				>
+					Hi, I'm Gaurav Khatri
+					<motion.span
+						className="inline-block origin-bottom"
+						initial={{ rotate: 0 }}
+						animate={{ rotate: [0, 20, -10, 20, -5, 0] }}
+						transition={{ duration: 1.4, repeat: Infinity, repeatDelay: 6 }}
+					>
+						👋
+					</motion.span>
+				</motion.h1>
+
+				<motion.p
+					className="text-lg leading-relaxed dark:text-gray-300"
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, delay: 0.2 }}
+				>
+					I'm a results-driven project leader based in Darwin, NT. With over a decade of experience across customer
+					operations, credit risk, compliance, and IT-enabled transformations, I specialise in executing enterprise-scale
+					initiatives in regulated industries.
+				</motion.p>
+
+				<motion.p
+					className="text-lg leading-relaxed mt-4 dark:text-gray-300"
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, delay: 0.4 }}
+				>
+					I currently lead a customer service team at Betfair and am preparing for PMP certification in 2025. My goal?
+					To connect business needs with digital solutions that drive results.
+				</motion.p>
+			</div>
+		</section>
+	);
+};
 
 export default Intro;

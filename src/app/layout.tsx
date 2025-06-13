@@ -1,22 +1,20 @@
-import { ReactNode } from 'react';
+import './globals.css';
 import type { Metadata } from 'next';
-import { GoogleAnalytics } from '@next/third-parties/google';
-import { Roboto } from 'next/font/google';
-import config from 'data/config';
-import 'components/ui/globals.css';
-import { cn } from 'lib/utils';
+import { Inter } from 'next/font/google';
+import AllProviders from 'components/AllProviders';
+import ThemeToggle from 'components/ui/ThemeToggle';
 
-const { url, defaultDescription, defaultTitle, twitter } = config;
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: defaultTitle,
-	description: defaultDescription,
-	metadataBase: new URL(url || "https://gaurav-nextjs-portfolio.vercel.app"),
+	title: 'Gaurav Khatri | Project Manager',
+	description: 'Portfolio site for Gaurav Khatri, a PM who bridges business and tech.',
+	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
 	openGraph: {
-		title: defaultTitle,
-		description: defaultDescription,
-		url,
-		siteName: defaultTitle,
+		title: 'Gaurav Khatri | PM Portfolio',
+		description: 'Explore projects, skills, and experience of Gaurav Khatri.',
+		url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+		siteName: 'Gaurav Khatri Portfolio',
 		images: [
 			{
 				url: '/assets/thumbnail/thumbnail.png',
@@ -24,45 +22,20 @@ export const metadata: Metadata = {
 				height: 600,
 			},
 		],
-		locale: 'en-US',
-		type: 'website',
 	},
-	icons: {
-		icon: '/assets/favicon/favicon-32x32.png',
-		shortcut: '/assets/favicon/favicon.ico',
-		apple: '/assets/favicon/apple-touch-icon.png',
-	},
-	twitter: {
-		card: 'summary_large_image',
-		creator: twitter,
-		title: defaultTitle,
-		description: defaultDescription,
-		site: url,
-		images: '/assets/thumbnail/thumbnail.png',
-	},
-	manifest: '/assets/favicon/site.webmanifest',
 };
 
-const roboto = Roboto({
-	subsets: ['latin'],
-	weight: ['400', '500', '700'],
-	variable: '--font-roboto',
-	display: 'swap',
-});
-
-type RootLayoutProps = {
-	children: ReactNode;
-};
-
-export const revalidate = 3600;
-
-const RootLayout = ({ children }: RootLayoutProps) => (
-	<html lang="en" suppressHydrationWarning>
-		<body className={cn('bg-background min-h-screen font-sans antialiased scroll-smooth', roboto.variable)}>
-			{children}
-		</body>
-		<GoogleAnalytics gaId={config.googleAnalyticsID} />
-	</html>
-);
-
-export default RootLayout;
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<body className={`${inter.className} bg-red-500 text-gray-900 dark:bg-black dark:text-gray-100`}>
+				<AllProviders>
+					<div className="p-4 flex justify-end">
+						<ThemeToggle />
+					</div>
+					<main className="max-w-3xl mx-auto px-4 border border-red-500">{children}</main>
+				</AllProviders>
+			</body>
+		</html>
+	);
+}
