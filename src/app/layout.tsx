@@ -2,7 +2,6 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import AllProviders from 'components/AllProviders';
-import ThemeToggle from 'components/ui/ThemeToggle';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,12 +27,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${inter.className} bg-red-500 text-gray-900 dark:bg-black dark:text-gray-100`}>
+			<body className={`${inter.className} bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100`}>
 				<AllProviders>
-					<div className="p-4 flex justify-end">
-						<ThemeToggle />
-					</div>
-					<main className="max-w-3xl mx-auto px-4 border border-red-500">{children}</main>
+					{/* Simple, clean layout like the target */}
+					<main className="max-w-2xl mx-auto px-6 py-12">{children}</main>
 				</AllProviders>
 			</body>
 		</html>
