@@ -50,7 +50,7 @@ const HomePage = () => (
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, delay: 0.2 }}
 					>
-						I'm a results-driven <strong>project leader</strong> based in Darwin, NT. With over a decade of experience across customer
+						I&apos;m a results-driven <strong>project leader</strong> based in Darwin, NT. With over a decade of experience across customer
 						operations, credit risk, compliance, and IT-enabled transformations, I specialise in executing enterprise-scale
 						initiatives in regulated industries.
 					</motion.p>
